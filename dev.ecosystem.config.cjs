@@ -1,11 +1,11 @@
 module.exports = {
-    apps: [
-      {
-        name: "hjour-fe-dev",
-        script: "npm run build",
-        env: {
-            PORT:8000
-        }
+  apps: [
+    {
+      name: "healjour-fe-dev",
+      script: "npx -y serve -s ~/healjour-fe-dev -l 8000",
+      env: {
+        PORT: 8000,
       },
-    ],
+    },
+  ],
 };
