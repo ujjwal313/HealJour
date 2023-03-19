@@ -30,7 +30,7 @@ jobs:
         run: npm run build
 
       - name: Copy files before deploy
-        run: node before_deploy.js
+        run: node before_deploy.cjs
 
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2.2.11
