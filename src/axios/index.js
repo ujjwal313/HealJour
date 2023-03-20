@@ -1,7 +1,7 @@
 import axios  from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3500/v1",
+  baseURL: "https://api.healjour.com/v1",
 });
 
 export default instance;
