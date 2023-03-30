@@ -107,7 +107,14 @@ function App() {
                 return (
                   <AccordionItem my="10px" key={test.test_name}>
                     <h2>
-                      <AccordionButton bg="#f6f6f6">
+                      <AccordionButton
+                        bg="#f6f6f6"
+                        pointerEvents={
+                          test.test_status.toLowerCase() === "completed"
+                            ? "none"
+                            : "all"
+                        }
+                      >
                         <HStack flex={1} justifyContent="space-between">
                           <VStack spacing={0}>
                             <Text fontWeight={400} fontSize="14px">
@@ -173,7 +180,7 @@ function App() {
                             >
                               Queue
                             </Text>
-                            <Text>2</Text>
+                            <Text>{test.queue}</Text>
                           </VStack>
                         </Flex>
                         <Flex justifyContent="space-between" w="100%" px="10px">
@@ -195,7 +202,7 @@ function App() {
                             >
                               Floor
                             </Text>
-                            <Text>2</Text>
+                            <Text>{test.floor_number}</Text>
                           </VStack>
                         </Flex>
                         <Flex justifyContent="space-between" w="100%" px="10px">
@@ -217,7 +224,7 @@ function App() {
                             >
                               Room
                             </Text>
-                            <Text>15</Text>
+                            <Text>{parseInt(test.room_number)}</Text>
                           </VStack>
                         </Flex>
                         <Flex justifyContent="space-between" w="100%" px="10px">
