@@ -13,11 +13,11 @@ then
     npx -y pm2 save
     npx -y pm2 del healjour-fe-dev
     cd ~/healjour-fe-dev
-    npx -y pm2 serve -f ~/healjour-fe-dev/ 8000 --spa
+    npx -y pm2 serve ~/healjour-fe-dev/ 8000 --name healjour-fe-dev --spa
     npx -y pm2 save
 else
     npx -y pm2 save
     cd ~/healjour-fe-dev
-    npx -y pm2 serve -f ~/healjour-fe-dev/ 8000 --spa
+    npx -y pm2 serve ~/healjour-fe-dev/ 8000 --name healjour-fe-dev --spa
     npx -y pm2 save
 fi
