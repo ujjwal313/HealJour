@@ -21,8 +21,8 @@ fs.copyFile(
 );
 
 fs.copyFile(
-  path.join(__dirname + "/dev.ecosystem.config.cjs"),
-  path.join(__dirname + "/dist/dev.ecosystem.config.cjs"),
+  path.join(__dirname + "/dev.ecosystem.config.js"),
+  path.join(__dirname + "/dist/dev.ecosystem.config.js"),
   (err) => {
     if (err) throw new Error(err);
     console.log("dev.ecosystem.config.cjs copied..");
