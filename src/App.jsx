@@ -58,7 +58,11 @@ function App() {
             </Text>
             <Box>
               <Text fontWeight={400} fontSize="14px">
-                {records.first_name + " " + records.last_name}
+                {records.patient_salutation +
+                  " " +
+                  records.first_name +
+                  " " +
+                  records.last_name}
               </Text>
             </Box>
           </VStack>
@@ -66,8 +70,8 @@ function App() {
             <Text fontWeight={700} fontSize="12px" color="#7c7c7c">
               Lab Name
             </Text>
-            <Text fontWeight={400} fontSize="14px">
-              HealthCare Clinic
+            <Text fontWeight={400} fontSize="14px" textTransform="capitalize">
+              {records.center_name}
             </Text>
           </VStack>
           <VStack w="100%" alignItems="flex-start" spacing={0}>
