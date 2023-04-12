@@ -74,14 +74,14 @@ function App() {
               {records.center_name}
             </Text>
           </VStack>
-          <VStack w="100%" alignItems="flex-start" spacing={0}>
+          {/* <VStack w="100%" alignItems="flex-start" spacing={0}>
             <Text fontWeight={700} fontSize="12px" color="#7c7c7c">
               Test Name
             </Text>
             <Text fontWeight={400} fontSize="14px">
-              Test 1
+              {records}
             </Text>
-          </VStack>
+          </VStack> */}
           <HStack w="100%" justifyContent="space-between">
             <Text>Tests</Text>
             <Button
@@ -214,7 +214,7 @@ function App() {
                             >
                               Tip
                             </Text>
-                            <Text>-</Text>
+                            <Text>{test.instructions}</Text>
                           </VStack>
                           <VStack>
                             <Text
