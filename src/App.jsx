@@ -116,16 +116,16 @@ function App() {
                         }
                       >
                         <HStack flex={1} justifyContent="space-between">
-                          <VStack spacing={0}>
+                          <VStack spacing={0} alignItems="start">
                             <Text fontWeight={400} fontSize="14px">
-                              Diagnostic Test
+                              {test.test_name}
                             </Text>
                             <Text
                               fontWeight={600}
                               fontSize="12px"
                               color="#7c7c7c"
                             >
-                              Queue 2
+                              Queue {test.queue}
                             </Text>
                           </VStack>
                           <Center
