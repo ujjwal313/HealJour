@@ -52,7 +52,7 @@ function App() {
       ) : (
         <VStack w="100%" textAlign="start" alignItems="center">
           <Image src={logo} />
-          <VStack w="100%" alignItems="flex-start">
+          <VStack w="100%" alignItems="flex-start" spacing={0}>
             <Text fontWeight={700} fontSize="12px" color="#7c7c7c">
               Patient Name
             </Text>
@@ -83,7 +83,9 @@ function App() {
             </Text>
           </VStack> */}
           <HStack w="100%" justifyContent="space-between">
-            <Text>Tests</Text>
+            <Text fontSize="20px" fontWeight="bold">
+              Tests
+            </Text>
             <Button
               color="#21B34A"
               fontWeight={700}
@@ -105,7 +107,11 @@ function App() {
               )
               .map((test) => {
                 return (
-                  <AccordionItem my="10px" key={test.test_name}>
+                  <AccordionItem
+                    my="10px"
+                    key={test.test_name}
+                    _first={{ mt: "0px" }}
+                  >
                     <h2>
                       <AccordionButton
                         bg="#f6f6f6"
@@ -161,82 +167,93 @@ function App() {
                         borderRadius="16px"
                         boxShadow="0px 8px 24px rgba(0, 0, 0, 0.1)"
                       >
-                        <Flex justifyContent="space-between" w="100%" px="10px">
-                          <VStack alignItems="flex-start">
+                        <Flex justifyContent="space-between" w="100%" px="5px">
+                          <VStack alignItems="flex-start" spacing={0}>
                             <Text
                               alignSelf="flex-start"
-                              fontWeight={700}
+                              fontWeight="bold"
                               fontSize="12px"
+                              color="#7C7C7C"
                             >
                               Test Name
                             </Text>
-                            <Text>{test.test_name}</Text>
+                            <Text fontSize="14px">{test.test_name}</Text>
                           </VStack>
-                          <VStack>
+                          <VStack spacing={0} alignItems="end">
                             <Text
                               alignSelf="flex-end"
-                              fontWeight={700}
+                              fontWeight="bold"
                               fontSize="12px"
+                              color="#7C7C7C"
                             >
                               Queue
                             </Text>
-                            <Text>{test.queue}</Text>
+                            <Text fontSize="14px">{test.queue}</Text>
                           </VStack>
                         </Flex>
-                        <Flex justifyContent="space-between" w="100%" px="10px">
-                          <VStack alignItems="flex-start">
+                        <Flex justifyContent="space-between" w="100%" px="5px">
+                          <VStack alignItems="flex-start" spacing={0}>
                             <Text
                               alignSelf="flex-start"
-                              fontWeight={700}
+                              fontWeight="bold"
                               fontSize="12px"
+                              color="#7C7C7C"
                             >
                               Department Name
                             </Text>
-                            <Text>{test.dept_name || "-"}</Text>
+                            <Text fontSize="14px">{test.dept_name || "-"}</Text>
                           </VStack>
-                          <VStack>
+                          <VStack spacing={0}>
                             <Text
                               alignSelf="flex-end"
-                              fontWeight={700}
+                              fontWeight="bold"
                               fontSize="12px"
+                              color="#7C7C7C"
                             >
                               Floor
                             </Text>
-                            <Text>{test.floor_number}</Text>
+                            <Text fontSize="14px">{test.floor_number}</Text>
                           </VStack>
                         </Flex>
-                        <Flex justifyContent="space-between" w="100%" px="10px">
-                          <VStack>
+                        <Flex justifyContent="space-between" w="100%" px="5px">
+                          <VStack spacing={0}>
                             <Text
                               alignSelf="flex-start"
-                              fontWeight={700}
+                              fontWeight="bold"
                               fontSize="12px"
+                              color="#7C7C7C"
                             >
                               Tip
                             </Text>
-                            <Text>{test.instructions}</Text>
+                            <Text fontSize="14px">{test.instructions}</Text>
                           </VStack>
-                          <VStack>
+                          <VStack spacing={0}>
                             <Text
                               alignSelf="flex-end"
-                              fontWeight={700}
+                              fontWeight="bold"
                               fontSize="12px"
+                              color="#7C7C7C"
                             >
                               Room
                             </Text>
-                            <Text>{parseInt(test.room_number)}</Text>
+                            <Text fontSize="14px">
+                              {parseInt(test.room_number)}
+                            </Text>
                           </VStack>
                         </Flex>
-                        <Flex justifyContent="space-between" w="100%" px="10px">
-                          <VStack>
+                        <Flex justifyContent="space-between" w="100%" px="5px">
+                          <VStack spacing={0}>
                             <Text
                               alignSelf="flex-start"
-                              fontWeight={700}
+                              fontWeight="bold"
                               fontSize="12px"
+                              color="#7C7C7C"
                             >
                               Status
                             </Text>
-                            <Text>{test.test_status || "-"}</Text>
+                            <Text fontSize="14px">
+                              {test.test_status || "-"}
+                            </Text>
                           </VStack>
                         </Flex>
                       </VStack>
