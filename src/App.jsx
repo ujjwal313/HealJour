@@ -140,7 +140,7 @@ function App() {
                                 ? "#cce9d4"
                                 : "#f8e4c5"
                             }
-                            p="4px"
+                            p="4px 6px"
                             borderRadius="6px"
                           >
                             <Text
