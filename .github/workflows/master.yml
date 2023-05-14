@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      AWS_HOST: 3.110.208.56
+      AWS_HOST: 35.154.142.157
       USER: ubuntu
       DEPLOY_FOLDER: healjour-fe-dev
       SERVER_SSH_KEY: ${{ secrets.HEALJOUR_FE_PROD_KEY }}
@@ -38,7 +38,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.HEALJOUR_FE_KEY }}
           ARGS: "-rltgoDzvO --delete"
           SOURCE: "dist/"
-          REMOTE_HOST: 3.109.49.150
+          REMOTE_HOST: 35.154.142.157
           REMOTE_USER: ubuntu
           TARGET: "~/healjour-fe-dev/"
           EXCLUDE: "/node_modules/"
@@ -46,7 +46,7 @@ jobs:
       - name: RUN SERVER
         uses: appleboy/ssh-action@master #change back to master once docker issue get fixed by repo owner
         with:
-          host: 3.109.49.150
+          host: 35.154.142.157
           username: ubuntu
           key: ${{ secrets.HEALJOUR_FE_KEY }}
           script: sh ~/healjour-fe-dev/master.deploy.sh
