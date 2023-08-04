@@ -1,27 +1,19 @@
 import { Flex, HStack, Stack, Text, VStack } from "@chakra-ui/layout";
 import React, { useState } from "react";
-import logo from "../assets/logo.svg";
 import mainImage from "../assets/mainImage.png";
 import { Image } from "@chakra-ui/image";
 import { Input } from "@chakra-ui/input";
-import { Button, IconButton } from "@chakra-ui/button";
-import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
+import { IconButton } from "@chakra-ui/button";
+import { HiArrowRight } from "react-icons/hi";
 import { useNavigate } from "react-router";
+import Header from "../components/Header";
 
 const HomePage = () => {
   const [orderId, setOrderId] = useState("");
   const navigate = useNavigate();
   return (
     <VStack minH="100vh" w="100vw" spacing={0}>
-      <Flex
-        w="100%"
-        py="20px"
-        boxShadow="lg"
-        borderRadius="8px"
-        justifyContent="center"
-      >
-        <Image src={logo} />
-      </Flex>
+      <Header />
       <Stack
         flex={1}
         w="100%"

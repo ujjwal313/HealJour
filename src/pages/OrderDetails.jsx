@@ -74,14 +74,6 @@ const OrderDetails = () => {
                 {records.center_name}
               </Text>
             </VStack>
-            {/* <VStack w="100%" alignItems="flex-start" spacing={0}>
-            <Text fontWeight={700} fontSize="12px" color="#7c7c7c">
-              Test Name
-            </Text>
-            <Text fontWeight={400} fontSize="14px">
-              {records}
-            </Text>
-          </VStack> */}
             <HStack w="100%" justifyContent="space-between">
               <Text fontSize="20px" fontWeight="bold">
                 Tests
