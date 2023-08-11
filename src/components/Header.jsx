@@ -1,8 +1,17 @@
-import { Flex, Image, Link } from "@chakra-ui/react";
+import { Button, Flex, Image, Link } from "@chakra-ui/react";
 import React from "react";
 import logo from "../assets/logo.svg";
+import { useStore } from "../store";
+import { HiLogout, HiOutlineLogout } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const token = useStore((state) => state.token);
+
+  const resetAuth = useStore((state) => state.resetAuth);
+
+  const navigate = useNavigate();
+
   return (
     <Flex
       w="100%"
@@ -14,7 +23,22 @@ const Header = () => {
       justifyContent="space-between"
     >
       <Image src={logo} alt="healjour" />
-      <Link href="/login">Login</Link>
+      {token ? (
+        <Button
+          leftIcon={<HiOutlineLogout size="24px" color="red.500" />}
+          color="red.500"
+          bg="none"
+          _hover={{ bg: "none" }}
+          onClick={() => {
+            resetAuth();
+            navigate("/login");
+          }}
+        >
+          Logout
+        </Button>
+      ) : (
+        <Link href="/login">Login</Link>
+      )}
     </Flex>
   );
 };
