@@ -1,12 +1,9 @@
 import React from "react";
 import Header from "../components/Header";
 import {
-  Box,
   Center,
-  Flex,
   Grid,
   GridItem,
-  HStack,
   Spinner,
   Table,
   TableContainer,
@@ -16,14 +13,20 @@ import {
   Th,
   Thead,
   Tr,
-  Link,
   VStack,
+  Button,
 } from "@chakra-ui/react";
 import { useGetDepartments } from "../axios/queryHooks";
+import { useStore } from "../store";
+import { useNavigate } from "react-router";
 
 const Dashboard = () => {
   const { data: departmentData, isLoading } = useGetDepartments();
-  console.log(departmentData);
+
+  const updateDepartment = useStore((state) => state.updateDepartment);
+
+  const navigate = useNavigate();
+
   return (
     <VStack w="100vw" minH="100vh">
       {isLoading ? (
@@ -33,7 +36,7 @@ const Dashboard = () => {
       ) : (
         <>
           <Header />
-          <VStack pt={8} w="100%" px={6} spacing={12}>
+          <VStack py={8} w="100%" px={6} spacing={12}>
             <Grid
               w="100%"
               p={12}
@@ -75,53 +78,7 @@ const Dashboard = () => {
                 </VStack>
               </GridItem>
             </Grid>
-            {/* <Grid
-              w="100%"
-              p={10}
-              templateColumns={[
-                "repeat(1, 1fr)",
-                "repeat(3, 1fr)",
-                "repeat(4, 1fr)",
-              ]}
-              gap={12}
-            >
-              {departmentData?.data.map((dep) => {
-                return (
-                  <GridItem
-                    key={dep.department_id}
-                    boxShadow="lg"
-                    borderRadius="20px"
-                    p={2}
-                    cursor="pointer"
-                    opacity={0.8}
-                  >
-                    <VStack p={8} borderRadius="1rem" w="auto" spacing={8}>
-                      <Text fontSize="1.25rem" fontWeight={500}>
-                        {dep.department_name}
-                      </Text>
-                      <VStack w="100%" alignItems="flex-start">
-                        <Text fontSize="1rem" fontWeight={500}>
-                          Total Patients: {dep.count.all}
-                        </Text>
-                        <Text fontSize="1rem" fontWeight={500}>
-                          Pending Patients:{" "}
-                          <Text as="span" color="orange">
-                            {dep.count.pending}
-                          </Text>
-                        </Text>
-                        <Text fontSize="1rem" fontWeight={500}>
-                          Completed Patients:{" "}
-                          <Text as="span" color="green">
-                            {dep.count.complete}
-                          </Text>
-                        </Text>
-                      </VStack>
-                    </VStack>
-                  </GridItem>
-                );
-              })}
-            </Grid> */}
-            <TableContainer w="100%">
+            <TableContainer w="100%" px={2} boxShadow="lg" borderRadius="16px">
               <Table variant="simple">
                 <Thead>
                   <Tr>
@@ -136,9 +93,16 @@ const Dashboard = () => {
                     return (
                       <Tr>
                         <Td>
-                          <Link href={`/department/${dep.department_id}`}>
+                          <Button
+                            bg="none"
+                            _hover={{ bg: "none" }}
+                            onClick={() => {
+                              updateDepartment(dep.department_name);
+                              navigate(`/department/${dep.department_id}`);
+                            }}
+                          >
                             {dep.department_name}
-                          </Link>
+                          </Button>
                         </Td>
                         <Td fontSize={22}>{dep.count.all}</Td>
                         <Td fontSize={22} color="green">

@@ -36,8 +36,10 @@ const Header = () => {
         >
           Logout
         </Button>
-      ) : (
+      ) : !window.location.pathname.includes("login") ? (
         <Link href="/login">Login</Link>
+      ) : (
+        ""
       )}
     </Flex>
   );

@@ -17,9 +17,7 @@ export const useAdminLogin = () => {
       return response.data;
     },
     onSuccess: (response) => {
-      const { access_id, admin_id, email, role } = jwtDecode(
-        response.data.token
-      );
+      const { access_id, admin_id, email, role } = jwtDecode(response.data);
       updateAdmin({ access_id, admin_id, email, role });
     },
   });
@@ -36,6 +34,71 @@ export const useGetDepartments = () => {
           Authorization: token,
         },
       });
+      return response.data;
+    },
+  });
+};
+
+export const useGetDepartmentDetails = (id) => {
+  const token = useStore((state) => state.token);
+
+  return useQuery({
+    queryKey: ["patients", id],
+    queryFn: async () => {
+      const response = await axiosConfig.get("/organisation/department", {
+        params: {
+          department_id: id,
+        },
+        headers: {
+          Authorization: token,
+        },
+      });
+      return response.data;
+    },
+    enabled: !!id,
+  });
+};
+
+export const usePriorityPush = () => {
+  const token = useStore((state) => state.token);
+
+  return useMutation({
+    mutationKeyKey: ["priority"],
+    mutationFn: async (data) => {
+      const response = await axiosConfig.put(
+        "/admin/order/priority/push",
+        {
+          order_id: data.id,
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+      return response.data;
+    },
+  });
+};
+
+export const useSchedulePush = () => {
+  const token = useStore((state) => state.token);
+
+  return useMutation({
+    mutationKeyKey: ["schedule"],
+    mutationFn: async (data) => {
+      const response = await axiosConfig.put(
+        "/admin/order/schedule/push",
+        {
+          test_id: data.id,
+          time_to_schedule: data.time,
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
       return response.data;
     },
   });

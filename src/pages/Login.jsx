@@ -61,7 +61,7 @@ const Login = () => {
                       isClosable: true,
                       position: "top-right",
                     });
-                    updateToken(response.data.token);
+                    updateToken(response.data);
                     navigate("/dashboard");
                   },
                   onError: (error) => {

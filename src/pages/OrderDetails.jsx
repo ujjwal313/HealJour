@@ -12,6 +12,7 @@ import {
   HStack,
   Image,
   Spinner,
+  Tag,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -25,7 +26,9 @@ const OrderDetails = () => {
   const { id } = useParams();
 
   const getUsers = async () => {
-    const response = await axiosConfig.get(`/order/view?orderId=${id}`);
+    const response = await axiosConfig.get(
+      `/order/view?order_external_id=${id}`
+    );
     return response?.data.data;
   };
 
@@ -58,11 +61,9 @@ const OrderDetails = () => {
               </Text>
               <Box>
                 <Text fontWeight={400} fontSize="14px">
-                  {records.patient_salutation +
+                  {records.findOrderDetails.first_name +
                     " " +
-                    records.first_name +
-                    " " +
-                    records.last_name}
+                    records.findOrderDetails.last_name}
                 </Text>
               </Box>
             </VStack>
@@ -71,7 +72,7 @@ const OrderDetails = () => {
                 Lab Name
               </Text>
               <Text fontWeight={400} fontSize="14px" textTransform="capitalize">
-                {records.center_name}
+                {records.findOrganisationDetails.name}
               </Text>
             </VStack>
             <HStack w="100%" justifyContent="space-between">
@@ -84,18 +85,19 @@ const OrderDetails = () => {
                 fontSize="14px"
                 bg="none"
                 leftIcon={<HiOutlineRefresh />}
+                _hover={{ bg: "none" }}
                 cursor="pointer"
-                onClick={() => refetch()}
+                onClick={refetch}
               >
                 Refresh
               </Button>
             </HStack>
             <Accordion allowToggle defaultIndex={[0]} w="100%">
-              {records?.newData
+              {records?.findTestDetails
                 ?.sort(
                   (a, b) =>
-                    statusOrder.indexOf(a.test_status.toLowerCase()) -
-                    statusOrder.indexOf(b.test_status.toLowerCase())
+                    statusOrder.indexOf(a["test.status"]?.toLowerCase()) -
+                    statusOrder.indexOf(b["test.status"]?.toLowerCase())
                 )
                 .map((test) => {
                   return (
@@ -108,14 +110,18 @@ const OrderDetails = () => {
                         <AccordionButton
                           bg="#f6f6f6"
                           pointerEvents={
-                            test.test_status.toLowerCase() === "completed"
+                            test["tests.status"]?.toLowerCase() === "completed"
                               ? "none"
                               : "all"
                           }
                         >
                           <HStack flex={1} justifyContent="space-between">
-                            <VStack spacing={0} alignItems="start">
-                              <Text fontWeight={400} fontSize="14px">
+                            <VStack spacing={0} alignItems="flex-start">
+                              <Text
+                                fontWeight={300}
+                                fontSize="12px"
+                                textOverflow="ellipsis"
+                              >
                                 {test.test_name}
                               </Text>
                               <Text
@@ -123,28 +129,32 @@ const OrderDetails = () => {
                                 fontSize="12px"
                                 color="#7c7c7c"
                               >
-                                Queue {test.queue}
+                                Queue-{" "}
+                                {
+                                  records.updatedDepartmentDetails.filter(
+                                    (dept) => dept.id === test.department_id
+                                  )[0].total_messages
+                                }
                               </Text>
                             </VStack>
-                            <Center
+                            <Tag
+                              color={
+                                test["tests.status"].toLowerCase() ===
+                                "completed"
+                                  ? "#21B34A"
+                                  : "#FF9900"
+                              }
                               bg={
-                                test.test_status.toLowerCase() === "completed"
+                                test["tests.status"].toLowerCase() ===
+                                "completed"
                                   ? "#cce9d4"
                                   : "#f8e4c5"
                               }
-                              p="4px 6px"
-                              borderRadius="6px"
+                              p={2}
+                              borderRadius="16px"
                             >
-                              <Text
-                                color={
-                                  test.test_status.toLowerCase() === "completed"
-                                    ? "#21B34A"
-                                    : "#FF9900"
-                                }
-                              >
-                                {test.test_status}
-                              </Text>
-                            </Center>
+                              {test["tests.status"]}
+                            </Tag>
                           </HStack>
                           <AccordionIcon />
                         </AccordionButton>
@@ -184,7 +194,13 @@ const OrderDetails = () => {
                               >
                                 Queue
                               </Text>
-                              <Text fontSize="14px">{test.queue}</Text>
+                              <Text fontSize="14px">
+                                {
+                                  records.updatedDepartmentDetails.filter(
+                                    (dept) => dept.id === test.department_id
+                                  )[0].total_messages
+                                }
+                              </Text>
                             </VStack>
                           </Flex>
                           <Flex
@@ -202,19 +218,24 @@ const OrderDetails = () => {
                                 Department Name
                               </Text>
                               <Text fontSize="14px">
-                                {test.dept_name || "-"}
+                                {records.updatedDepartmentDetails.filter(
+                                  (dept) => dept.id === test.department_id
+                                )[0].department_name || "-"}
                               </Text>
                             </VStack>
-                            <VStack spacing={0}>
+                            <VStack spacing={0} alignItems="flex-end">
                               <Text
-                                alignSelf="flex-end"
                                 fontWeight="bold"
                                 fontSize="12px"
                                 color="#7C7C7C"
                               >
                                 Floor
                               </Text>
-                              <Text fontSize="14px">{test.floor_number}</Text>
+                              <Text fontSize="14px">
+                                {records.updatedDepartmentDetails.filter(
+                                  (dept) => dept.id === test.department_id
+                                )[0].floor_number || "-"}
+                              </Text>
                             </VStack>
                           </Flex>
                           <Flex
@@ -231,7 +252,9 @@ const OrderDetails = () => {
                               >
                                 Tip
                               </Text>
-                              <Text fontSize="14px">{test.instructions}</Text>
+                              <Text fontSize="14px">
+                                {test.instructions || "-"}
+                              </Text>
                             </VStack>
                             <VStack spacing={0}>
                               <Text
@@ -243,7 +266,9 @@ const OrderDetails = () => {
                                 Room
                               </Text>
                               <Text fontSize="14px">
-                                {parseInt(test.room_number)}
+                                {records.updatedDepartmentDetails.filter(
+                                  (dept) => dept.id === test.department_id
+                                )[0].room_number || "-"}
                               </Text>
                             </VStack>
                           </Flex>
@@ -262,7 +287,7 @@ const OrderDetails = () => {
                                 Status
                               </Text>
                               <Text fontSize="14px">
-                                {test.test_status || "-"}
+                                {test["tests.status"] || "-"}
                               </Text>
                             </VStack>
                           </Flex>
