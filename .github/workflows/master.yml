@@ -33,7 +33,7 @@ jobs:
         run: node before_deploy.cjs
 
       - name: Deploy to Server
-        uses: easingthemes/ssh-deploy@v2.2.11
+        uses: easingthemes/ssh-deploy@main
         with:
           SSH_PRIVATE_KEY: ${{ env.SERVER_SSH_KEY }}
           REMOTE_HOST: ${{env.AWS_HOST}}
