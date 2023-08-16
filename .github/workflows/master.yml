@@ -14,7 +14,7 @@ jobs:
       AWS_HOST: 52.66.109.7
       USER: ubuntu
       DEPLOY_FOLDER: healjour-fe-dev
-      SERVER_SSH_KEY: ${{ secrets.HEALJOUR_FE_PROD_KEY }}
+      SERVER_SSH_KEY: ${{ secrets.HEALJOUR_FE_KEY }}
 
     steps:
       - uses: actions/checkout@v3
