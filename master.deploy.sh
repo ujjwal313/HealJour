@@ -4,8 +4,6 @@ set -eu
 
 cd ~/healjour-fe-dev
 
-
-
 npm i
 
 if npx -y pm2 ls | grep healjour-fe-dev
