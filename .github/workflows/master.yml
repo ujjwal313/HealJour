@@ -39,7 +39,7 @@ jobs:
           REMOTE_HOST: 52.66.109.7
           REMOTE_USER: ubuntu
         env:
-          ARGS: "-rltgoDzvO -i --delete"
+          ARGS: "-rltgoDzvO --delete"
           SOURCE: "dist/"
           TARGET: "~/healjour-fe-dev/"
           EXCLUDE: "/node_modules/"
