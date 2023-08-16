@@ -45,7 +45,7 @@ jobs:
           EXCLUDE: "/node_modules/"
 
       - name: RUN SERVER
-        uses: appleboy/ssh-action@master #change back to master once docker issue get fixed by repo owner
+        uses: appleboy/ssh-action@v0.1.4 #change back to master once docker issue get fixed by repo owner
         with:
           host: 52.66.109.7
           username: ubuntu
