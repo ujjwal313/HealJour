@@ -40,7 +40,7 @@ jobs:
           REMOTE_USER: ubuntu
         env:
           ARGS: "-rltgoDzvO --delete"
-          SOURCE: "build/"
+          SOURCE: "dist/"
           TARGET: "~/healjour-fe-dev/"
           EXCLUDE: "/node_modules/"
 
