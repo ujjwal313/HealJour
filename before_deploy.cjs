@@ -4,7 +4,7 @@ const path = require("path");
 
 fs.copyFile(
   path.join(__dirname + "/package.json"),
-  path.join(__dirname + "/dist/package.json"),
+  path.join(__dirname + "/build/package.json"),
   (err) => {
     if (err) throw new Error(err);
     console.log("package.json copied..");
@@ -13,7 +13,7 @@ fs.copyFile(
 
 fs.copyFile(
   path.join(__dirname + "/master.deploy.sh"),
-  path.join(__dirname + "/dist/master.deploy.sh"),
+  path.join(__dirname + "/build/master.deploy.sh"),
   (err) => {
     if (err) throw new Error(err);
     console.log("master.deploy.sh copied..");
@@ -22,7 +22,7 @@ fs.copyFile(
 
 fs.copyFile(
   path.join(__dirname + "/dev.ecosystem.config.cjs"),
-  path.join(__dirname + "/dist/dev.ecosystem.config.cjs"),
+  path.join(__dirname + "/build/dev.ecosystem.config.cjs"),
   (err) => {
     if (err) throw new Error(err);
     console.log("dev.ecosystem.config.cjs copied..");
