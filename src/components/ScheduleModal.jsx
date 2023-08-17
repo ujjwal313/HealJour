@@ -17,12 +17,13 @@ import { useToast } from "@chakra-ui/toast";
 const ScheduleModal = ({ isOpen, onClose, data }) => {
   const [time, setTime] = useState(0);
 
-  const { mutate: scheduleMutate, isLoading } = useSchedulePush();
+  // const { mutate: scheduleMutate, isLoading } = useSchedulePush();
+  const { mutate: priorityMutate, isLoading } = usePriorityPush();
 
   const toast = useToast();
 
   const handleScheduleSubmit = () => {
-    scheduleMutate(
+    priorityMutate(
       { id: data["organisationTests.tests.id"], time: time * 60 },
       {
         onSuccess: (data) => {
