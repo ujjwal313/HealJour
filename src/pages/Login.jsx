@@ -32,8 +32,13 @@ const Login = () => {
   return (
     <VStack w="100vw" minH="100vh">
       <Header />
-      <Center flex={1} w="100%">
-        <VStack p={[4, 8, 10]} boxShadow="lg" borderRadius="12px" w="40%">
+      <Center flex={1} w="100%" px={2}>
+        <VStack
+          p={[4, 8, 10]}
+          boxShadow="lg"
+          borderRadius="12px"
+          w={["100%", "40%"]}
+        >
           <Text>Login</Text>
           <Text>Enter your details to login</Text>
           <form
